@@ -17,17 +17,19 @@ export class Login extends React.Component{
     })
     .end((err, res) => {
       if(err) return
+      /*
       console.log("Login.js result -----------------");
       console.log('res : ' + res);
       console.log("Login.js result -----------------");
       console.log('res : ' + JSON.stringify(res.body));
       console.log('res : ' + JSON.stringify(res.body.result));
+     
+*/
 
       if(res.body.result)
       {
         console.log('res : ' + JSON.stringify(res.body.result));
-        this.setState({jump : '/hello'})
-
+        this.setState({jump : '/userList'})
       }
     })
   }

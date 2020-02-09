@@ -130,23 +130,23 @@ throw new Error("Module build failed: Error: ENOENT: no such file or directory, 
 
 /***/ }),
 
-/***/ "./src/Hello.js":
-/*!**********************!*\
-  !*** ./src/Hello.js ***!
-  \**********************/
-/*! exports provided: Hello */
+/***/ "./src/ApplicationHeader.js":
+/*!**********************************!*\
+  !*** ./src/ApplicationHeader.js ***!
+  \**********************************/
+/*! exports provided: ApplicationHeader */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Hello", function() { return Hello; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApplicationHeader", function() { return ApplicationHeader; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var superagent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! superagent */ "./node_modules/superagent/lib/client.js");
 /* harmony import */ var superagent__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(superagent__WEBPACK_IMPORTED_MODULE_1__);
 
 
-class Hello extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+class ApplicationHeader extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -157,7 +157,39 @@ class Hello extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   }
 
   render() {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, " Login Success ");
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+      class: "navbar navbar-expand-sm navbar-light bg-light mb-3"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      class: "container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      class: "navbar-brand"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "/",
+      class: "nav-link"
+    }, " MyApp "), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      class: "collapse navbar-collapse",
+      id: "navbarSupportedContent"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      class: "navbar-nav"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      class: "nav-item"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "/list",
+      class: "nav-link"
+    }, "MySQL list")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      class: "nav-item"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "/slowLambda",
+      class: "nav-link"
+    }, "slowLambda")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      class: "nav-item"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "/s3list",
+      class: "nav-link"
+    }, "S3 bucket")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "/users/logout",
+      class: "btn "
+    }, "Logout")));
   }
 
 }
@@ -199,16 +231,18 @@ class Login extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       password: this.state.password
     }).end((err, res) => {
       if (err) return;
+      /*
       console.log("Login.js result -----------------");
       console.log('res : ' + res);
       console.log("Login.js result -----------------");
       console.log('res : ' + JSON.stringify(res.body));
       console.log('res : ' + JSON.stringify(res.body.result));
+      */
 
       if (res.body.result) {
         console.log('res : ' + JSON.stringify(res.body.result));
         this.setState({
-          jump: '/hello'
+          jump: '/userList'
         });
       }
     });
@@ -275,6 +309,72 @@ class Login extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
 
 /***/ }),
 
+/***/ "./src/UserList.js":
+/*!*************************!*\
+  !*** ./src/UserList.js ***!
+  \*************************/
+/*! exports provided: UserList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserList", function() { return UserList; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var superagent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! superagent */ "./node_modules/superagent/lib/client.js");
+/* harmony import */ var superagent__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(superagent__WEBPACK_IMPORTED_MODULE_1__);
+
+
+class UserList extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+      jump: ''
+    };
+  }
+
+  api(command) {
+    console.log(command);
+    superagent__WEBPACK_IMPORTED_MODULE_1___default.a.get('/users/' + command).query({
+      email: this.state.email,
+      password: this.state.password
+    }).end((err, res) => {
+      if (err) return;
+      console.log("list .js result -----------------");
+      console.log('res : ' + res);
+      console.log("UserList.js result -----------------");
+      console.log('res : ' + JSON.stringify(res.body));
+      console.log('res : ' + JSON.stringify(res.body.result));
+
+      if (res.body.result) {
+        console.log('res : ' + JSON.stringify(res.body.result));
+        this.setState({
+          jump: '/userList'
+        });
+      }
+    });
+  }
+
+  render() {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      class: "container contact contact-index"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      class: "btn btn-success",
+      "data-toggle": "modal",
+      "data-target": "#myModalAdd",
+      onClick: e => this.api('list')
+    }, " LIST "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+      class: "table table-striped",
+      id: "mytable"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Product ID"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Product Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Action"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " 1 "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " kilhan "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " TAM "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " Seoul ")))));
+  }
+
+}
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -290,22 +390,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Login */ "./src/Login.js");
-/* harmony import */ var _Hello__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Hello */ "./src/Hello.js");
+/* harmony import */ var _UserList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./UserList */ "./src/UserList.js");
+/* harmony import */ var _ApplicationHeader__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ApplicationHeader */ "./src/ApplicationHeader.js");
 
 
 
 
 
 
-const MyApplication = () => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-  path: "/hello",
-  component: _Hello__WEBPACK_IMPORTED_MODULE_4__["Hello"]
+
+const MyApplication = () => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ApplicationHeader__WEBPACK_IMPORTED_MODULE_5__["ApplicationHeader"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+  path: "/userList",
+  component: _UserList__WEBPACK_IMPORTED_MODULE_4__["UserList"]
 }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
   path: "/",
   component: _Login__WEBPACK_IMPORTED_MODULE_3__["Login"]
 }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
   component: _Login__WEBPACK_IMPORTED_MODULE_3__["Login"]
-}))));
+})))));
+
+const ApplicationFooter = () => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "I am Header");
 
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MyApplication, null), document.getElementById('root'));
 

@@ -4,6 +4,23 @@ global.fetch = require('node-fetch');
 const authCheck = require('../cognito/cognitoLogin');
 const logoutCheck = require('../cognito/cognitoLogout');
 const memRegist = require('../cognito/cognitoSignUp');
+const mysql = require('mysql');
+const AWS = require('aws-sdk');
+var config  = require('../config.json');
+
+//Create Connection
+const conn = mysql.createConnection({
+    host: config.rds_host,
+    user: config.rds_user,
+    password: config.rds_password,
+    database: config.rds_database
+});
+
+//connect to database
+conn.connect((err) => {
+    if (err) throw err;
+    console.log('Mysql Connected...');
+});
 
 
 
@@ -36,7 +53,24 @@ router.get('/login', (req, res) => {
 
 
 // Register Page
-router.get('/register', (req, res) => res.render('register'));
+router.get('/list', (req, res) => {
+
+
+    console.log('==========================')
+    console.log(JSON.stringify(req.session));
+    console.log('==========================')
+
+    let sql = "SELECT * FROM member";
+    let query = conn.query(sql, (err, results) => {
+        if (err) throw err;
+
+        console.log(results)
+
+        res.json(results)
+
+    });
+
+});
 
 // Register
 router.post('/register', (req, res) => {
