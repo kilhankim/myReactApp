@@ -5,10 +5,24 @@ import {
   Route, Switch
 } from 'react-router-dom'
 import {Login} from './Login'
+import {Hello} from './Hello'
 
-console.log('testtesttesttest')
 
-// DOM의 내용을 메인 컴포넌트로 변경합니다.
+const MyApplication = () => (
+  <Router>
+    <div>
+      <Switch>
+        <Route path='/hello' component={Hello} />
+        <Route path='/' component={Login} />
+        <Route component={Login} />
+      </Switch>
+    </div>
+  </Router>
+)
+
+
 ReactDOM.render(
-  <Login />,
+  <MyApplication/>,
   document.getElementById('root'))
+
+

@@ -1,10 +1,11 @@
 import React from 'react'
 import request from 'superagent'
+import {Redirect} from 'react-router-dom'
 
 export class Login extends React.Component{
   constructor (props) {
     super(props)
-    this.state = { email : '', password : ''}
+    this.state = { email : '', password : '', jump : ''}
   }
 
   api(command) {
@@ -16,20 +17,27 @@ export class Login extends React.Component{
     })
     .end((err, res) => {
       if(err) return
-      const t = res.body
       console.log("Login.js result -----------------");
       console.log('res : ' + res);
       console.log("Login.js result -----------------");
       console.log('res : ' + JSON.stringify(res.body));
+      console.log('res : ' + JSON.stringify(res.body.result));
 
+      if(res.body.result)
+      {
+        console.log('res : ' + JSON.stringify(res.body.result));
+        this.setState({jump : '/hello'})
 
+      }
     })
-
-
   }
 
-
   render () {
+    if(this.state.jump){
+      console.log(this.state)
+      return <Redirect to={this.state.jump} />
+    }
+
 
     const changed = (name, e) => this.setState({[name]: e.target.value})
     return (

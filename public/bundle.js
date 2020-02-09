@@ -130,6 +130,40 @@ throw new Error("Module build failed: Error: ENOENT: no such file or directory, 
 
 /***/ }),
 
+/***/ "./src/Hello.js":
+/*!**********************!*\
+  !*** ./src/Hello.js ***!
+  \**********************/
+/*! exports provided: Hello */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Hello", function() { return Hello; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var superagent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! superagent */ "./node_modules/superagent/lib/client.js");
+/* harmony import */ var superagent__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(superagent__WEBPACK_IMPORTED_MODULE_1__);
+
+
+class Hello extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+      jump: ''
+    };
+  }
+
+  render() {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, " Login Success ");
+  }
+
+}
+
+/***/ }),
+
 /***/ "./src/Login.js":
 /*!**********************!*\
   !*** ./src/Login.js ***!
@@ -144,6 +178,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var superagent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! superagent */ "./node_modules/superagent/lib/client.js");
 /* harmony import */ var superagent__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(superagent__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
 
 
 class Login extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
@@ -151,7 +187,8 @@ class Login extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      jump: ''
     };
   }
 
@@ -162,15 +199,29 @@ class Login extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       password: this.state.password
     }).end((err, res) => {
       if (err) return;
-      const t = res.body;
       console.log("Login.js result -----------------");
       console.log('res : ' + res);
       console.log("Login.js result -----------------");
       console.log('res : ' + JSON.stringify(res.body));
+      console.log('res : ' + JSON.stringify(res.body.result));
+
+      if (res.body.result) {
+        console.log('res : ' + JSON.stringify(res.body.result));
+        this.setState({
+          jump: '/hello'
+        });
+      }
     });
   }
 
   render() {
+    if (this.state.jump) {
+      console.log(this.state);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
+        to: this.state.jump
+      });
+    }
+
     const changed = (name, e) => this.setState({
       [name]: e.target.value
     });
@@ -239,13 +290,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Login */ "./src/Login.js");
+/* harmony import */ var _Hello__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Hello */ "./src/Hello.js");
 
 
 
 
-console.log('testtesttesttest'); // DOM의 내용을 메인 컴포넌트로 변경합니다.
 
-react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Login__WEBPACK_IMPORTED_MODULE_3__["Login"], null), document.getElementById('root'));
+
+const MyApplication = () => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+  path: "/hello",
+  component: _Hello__WEBPACK_IMPORTED_MODULE_4__["Hello"]
+}), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+  path: "/",
+  component: _Login__WEBPACK_IMPORTED_MODULE_3__["Login"]
+}), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+  component: _Login__WEBPACK_IMPORTED_MODULE_3__["Login"]
+}))));
+
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MyApplication, null), document.getElementById('root'));
 
 /***/ })
 
