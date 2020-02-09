@@ -1,43 +1,71 @@
 import React from 'react'
+import request from 'superagent'
 
 export class Login extends React.Component{
+  constructor (props) {
+    super(props)
+    this.state = { email : '', password : ''}
+  }
+
+  api(command) {
+    console.log(command)
+    request.get('/users/'+command)
+    .query({ 
+      email : this.state.email,
+      password : this.state.password
+    })
+    .end((err, res) => {
+      if(err) return
+      const t = res.body
+      console.log(r)
+
+
+    })
+
+
+  }
+
+
   render () {
+
+    const changed = (name, e) => this.setState({[name]: e.target.value})
     return (
 
-
-<div class="row mt-5">
-  <div class="col-md-6 m-auto">
-    <div class="card card-body">
-      <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>  Login</h1>
-      <form action="/users/login" method="POST">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class="form-control"
-            placeholder="Enter Email"
-          />
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            class="form-control"
-            placeholder="Enter Password"
-          />
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Login</button>
-      </form>
-      <p class="lead mt-4">
-        No Account? <a href="/users/register">Register</a>
-      </p>
-    </div>
-  </div>
-</div>
+	<div class="row mt-5">
+	  <div class="col-md-6 m-auto">
+	    <div class="card card-body">
+	      <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>  Login</h1>
+		<div class="form-group">
+		  <label for="email">Email</label>
+		  <input
+		    value={this.state.email}
+		    type="email"
+		    id="email"
+		    name="email"
+		    class="form-control"
+		    placeholder="Enter Email"
+		    onChange={e => changed('email', e)}
+		  />
+		</div>
+		<div class="form-group">
+		  <label for="password">Password</label>
+		  <input
+		    value={this.state.password}
+		    type="password"
+		    id="password"
+		    name="password"
+		    class="form-control"
+		    placeholder="Enter Password"
+		    onChange={e => changed('password', e)}
+		  />
+		</div>
+		<button type="submit" class="btn btn-primary btn-block" onClick={e => this.api('login')} >Login</button>
+	      <p class="lead mt-4">
+		No Account? <a href="/users/register">Register</a>
+	      </p>
+	    </div>
+	  </div>
+	</div>
 
     )
   }

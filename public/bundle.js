@@ -119,6 +119,17 @@ throw new Error("Module build failed: Error: ENOENT: no such file or directory, 
 
 /***/ }),
 
+/***/ "./node_modules/superagent/lib/client.js":
+/*!***********************************************!*\
+  !*** ./node_modules/superagent/lib/client.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/home/ec2-user/application/node_modules/superagent/lib/client.js'");
+
+/***/ }),
+
 /***/ "./src/Login.js":
 /*!**********************!*\
   !*** ./src/Login.js ***!
@@ -131,9 +142,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Login", function() { return Login; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var superagent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! superagent */ "./node_modules/superagent/lib/client.js");
+/* harmony import */ var superagent__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(superagent__WEBPACK_IMPORTED_MODULE_1__);
+
 
 class Login extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: ''
+    };
+  }
+
+  api(command) {
+    console.log(command);
+    superagent__WEBPACK_IMPORTED_MODULE_1___default.a.get('/users/' + command).query({
+      email: this.state.email,
+      password: this.state.password
+    }).end((err, res) => {
+      if (err) return;
+      const t = res.body;
+      console.log(r);
+    });
+  }
+
   render() {
+    const changed = (name, e) => this.setState({
+      [name]: e.target.value
+    });
+
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       class: "row mt-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -144,33 +182,35 @@ class Login extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       class: "text-center mb-3"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       class: "fas fa-sign-in-alt"
-    }), "  Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-      action: "/users/login",
-      method: "POST"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }), "  Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       class: "form-group"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       for: "email"
     }, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      value: this.state.email,
       type: "email",
       id: "email",
       name: "email",
       class: "form-control",
-      placeholder: "Enter Email"
+      placeholder: "Enter Email",
+      onChange: e => changed('email', e)
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       class: "form-group"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       for: "password"
     }, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      value: this.state.password,
       type: "password",
       id: "password",
       name: "password",
       class: "form-control",
-      placeholder: "Enter Password"
+      placeholder: "Enter Password",
+      onChange: e => changed('password', e)
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       type: "submit",
-      class: "btn btn-primary btn-block"
-    }, "Login")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      class: "btn btn-primary btn-block",
+      onClick: e => this.api('login')
+    }, "Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       class: "lead mt-4"
     }, "No Account? ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "/users/register"

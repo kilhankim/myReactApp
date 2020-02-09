@@ -8,6 +8,7 @@
   "devDependencies": {
     "@babel/core": "7.7.7",
     "@babel/preset-react": "7.7.4",
+    "amazon-cognito-identity-js": "^3.2.4",
     "aws-sdk": "^2.614.0",
     "babel-loader": "8.0.6",
     "cookie-parser": "^1.4.4",
@@ -19,7 +20,8 @@
     "react-dom": "16.12.0",
     "react-router-dom": "^4.1.1",
     "request": "^2.88.0",
-    "require": "^2.4.20"
+    "require": "^2.4.20",
+    "superagent": "^5.2.1"
   },
   "keywords": [],
   "author": "",

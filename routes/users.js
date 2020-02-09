@@ -10,7 +10,29 @@ const memRegist = require('../cognito/cognitoSignUp');
 
 
 // Login Page
-router.get('/login', (req, res) => res.render('login'));
+router.get('/login', (req, res) => {
+  console.log('req.query : ' +  req.query );
+  console.log('req.query : ' +  JSON.stringify(req.query) );
+  console.log('req.query : ' +  JSON.stringify(req.query.email) );
+  console.log('req.query : ' +  JSON.stringify(req.query.password) );
+
+
+  const email = req.query.email
+  const password = req.query.password
+
+
+
+ var authCheckResult = authCheck.login(email, password, function(result){
+
+     console.log(result)
+     console.log(JSON.stringify(result))
+ 
+
+  });
+
+
+ });
+
 
 // Register Page
 router.get('/register', (req, res) => res.render('register'));
