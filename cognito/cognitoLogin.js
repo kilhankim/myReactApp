@@ -32,7 +32,7 @@ var authCheck = {
 
 
         console.log(email + ' ' + password)
-        //console.log(cognitoUser)
+        console.log(cognitoUser)
 
         var returnData = {}
 

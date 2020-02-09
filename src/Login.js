@@ -17,7 +17,10 @@ export class Login extends React.Component{
     .end((err, res) => {
       if(err) return
       const t = res.body
-      console.log(r)
+      console.log("Login.js result -----------------");
+      console.log('res : ' + res);
+      console.log("Login.js result -----------------");
+      console.log('res : ' + JSON.stringify(res.body));
 
 
     })

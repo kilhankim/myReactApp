@@ -24,9 +24,10 @@ router.get('/login', (req, res) => {
 
  var authCheckResult = authCheck.login(email, password, function(result){
 
-     console.log(result)
+     console.log("=====================")
      console.log(JSON.stringify(result))
  
+     res.json(result)
 
   });
 

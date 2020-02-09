@@ -163,7 +163,10 @@ class Login extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     }).end((err, res) => {
       if (err) return;
       const t = res.body;
-      console.log(r);
+      console.log("Login.js result -----------------");
+      console.log('res : ' + res);
+      console.log("Login.js result -----------------");
+      console.log('res : ' + JSON.stringify(res.body));
     });
   }
 
