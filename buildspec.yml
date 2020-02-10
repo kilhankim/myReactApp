@@ -1,0 +1,19 @@
+version: 0.1 
+ 
+phases:
+  install:
+    commands:
+      - echo Insatlling NPM Packages and wget Enviorment File
+      - npm install
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre_build phase...
+  build:
+    commands:
+      - echo Build started on `date`
+      - webpack
+  post_build:
+    commands:
+      - echo `ls -alt`
+artifacts:
+  discard-paths: yes
