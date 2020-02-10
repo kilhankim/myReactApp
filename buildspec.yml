@@ -17,6 +17,6 @@ phases:
       - webpack
   post_build:
     commands:
-      - echo `ls -alt`
+      - echo `ls -alt ./public/`
 artifacts:
   discard-paths: yes
