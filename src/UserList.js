@@ -4,7 +4,7 @@ import request from 'superagent'
 export class UserList extends React.Component{
   constructor (props) {
     super(props)
-    this.state = { email : '', password : '', jump : ''}
+    this.state = { member : []}
   }
 
 
@@ -22,13 +22,13 @@ export class UserList extends React.Component{
       console.log('res : ' + res);
       console.log("UserList.js result -----------------");
       console.log('res : ' + JSON.stringify(res.body));
-      console.log('res : ' + JSON.stringify(res.body.result));
      
 
-      if(res.body.result)
+      if(res.body.length>0)
       {
-        console.log('res : ' + JSON.stringify(res.body.result));
-        this.setState({jump : '/userList'})
+        console.log('res : ' + JSON.stringify(res.body));
+        this.setState({member : res.body})
+        console.log(JSON.stringify(this.state))
       }
     })
   }
@@ -44,19 +44,26 @@ export class UserList extends React.Component{
     <table class="table table-striped" id="mytable">
         <thead>
         <tr>
-            <th>Product ID</th>
-            <th>Product Name</th>
-            <th>Price</th>
-            <th>Action</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Address</th>
         </tr>
         </thead>
         <tbody>
-            <tr>
-                <td> 1 </td>
-                <td> kilhan </td>
-                <td> TAM </td>
-                <td> Seoul </td> 
-            </tr>
+
+	   {this.state.member.map((member, i) => {
+		return (
+			 <tr>
+				 <td> {member.id} </td>
+				 <td> {member.name} </td>
+				 <td> {member.title} </td> 
+				 <td> {member.address} </td>
+			 </tr>
+
+	               );
+	    })}
+
         </tbody>
     </table>
     </div>
@@ -64,3 +71,7 @@ export class UserList extends React.Component{
   }
 
 }
+
+
+
+

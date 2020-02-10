@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/home/ec2-user/application/node_modules/react-dom/index.js'");
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/home/ec2-user/myReactApp/node_modules/react-dom/index.js'");
 
 /***/ }),
 
@@ -104,7 +104,7 @@ throw new Error("Module build failed: Error: ENOENT: no such file or directory, 
 /*! exports provided: BrowserRouter, HashRouter, Link, MemoryRouter, NavLink, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/home/ec2-user/application/node_modules/react-router-dom/es/index.js'");
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/home/ec2-user/myReactApp/node_modules/react-router-dom/es/index.js'");
 
 /***/ }),
 
@@ -115,7 +115,7 @@ throw new Error("Module build failed: Error: ENOENT: no such file or directory, 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/home/ec2-user/application/node_modules/react/index.js'");
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/home/ec2-user/myReactApp/node_modules/react/index.js'");
 
 /***/ }),
 
@@ -126,7 +126,7 @@ throw new Error("Module build failed: Error: ENOENT: no such file or directory, 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/home/ec2-user/application/node_modules/superagent/lib/client.js'");
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/home/ec2-user/myReactApp/node_modules/superagent/lib/client.js'");
 
 /***/ }),
 
@@ -329,9 +329,7 @@ class UserList extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
-      jump: ''
+      member: []
     };
   }
 
@@ -346,13 +344,13 @@ class UserList extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       console.log('res : ' + res);
       console.log("UserList.js result -----------------");
       console.log('res : ' + JSON.stringify(res.body));
-      console.log('res : ' + JSON.stringify(res.body.result));
 
-      if (res.body.result) {
-        console.log('res : ' + JSON.stringify(res.body.result));
+      if (res.body.length > 0) {
+        console.log('res : ' + JSON.stringify(res.body));
         this.setState({
-          jump: '/userList'
+          member: res.body
         });
+        console.log(JSON.stringify(this.state));
       }
     });
   }
@@ -368,7 +366,9 @@ class UserList extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     }, " LIST "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
       class: "table table-striped",
       id: "mytable"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Product ID"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Product Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Action"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " 1 "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " kilhan "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " TAM "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " Seoul ")))));
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "ID"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Title"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Address"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, this.state.member.map((member, i) => {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", member.id, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", member.name, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", member.title, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", member.address, " "));
+    }))));
   }
 
 }

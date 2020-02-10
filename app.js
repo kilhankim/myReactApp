@@ -1,7 +1,7 @@
 
 const express = require('express')
 const app = express()
-const portNo = 3000
+const portNo = 80
 
 var request = require('request');
 var config  = require('./config.json');
