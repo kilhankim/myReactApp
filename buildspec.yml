@@ -4,6 +4,9 @@ phases:
   install:
     commands:
       - echo Insatlling NPM Packages and wget Enviorment File
+      - npm install --save-dev webpack -g
+      - npm install --save-dev webpack-cli -g
+      - npm install --save-dev react react-dom -g
       - npm install
   pre_build:
     commands:
