@@ -18,5 +18,6 @@ phases:
   post_build:
     commands:
       - echo `ls -alt ./public/`
+      - aws s3 ls
 artifacts:
   discard-paths: yes
