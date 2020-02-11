@@ -25,11 +25,6 @@ const conn = mysql.createConnection({
     database: config.rds_database
 });
 
-//connect to database
-conn.connect((err) => {
-    if (err) throw err;
-    console.log('Mysql Connected...');
-});
 
 var cookieParser = require('cookie-parser')
 var expressSession = require('express-session');

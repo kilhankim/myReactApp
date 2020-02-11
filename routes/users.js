@@ -17,10 +17,11 @@ const conn = mysql.createConnection({
 });
 
 //connect to database
-conn.connect((err) => {
-    if (err) throw err;
-    console.log('Mysql Connected...');
-});
+
+//conn.connect((err) => {
+ //   if (err) throw err;
+  //  console.log('Mysql Connected...');
+//});
 
 
 
