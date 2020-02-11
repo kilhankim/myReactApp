@@ -22,3 +22,4 @@ phases:
 artifacts:
   files : public/bundle.js
   discard-paths: yes
+
