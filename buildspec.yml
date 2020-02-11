@@ -18,7 +18,6 @@ phases:
   post_build:
     commands:
       - echo `ls -alt ./public/`
-      - aws s3 sync ./public s3://jjouhiu-application
 artifacts:
   files : public/bundle.js
   discard-paths: yes
