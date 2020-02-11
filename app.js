@@ -34,7 +34,7 @@ app.use(expressSession({
         resave:true,
         saveUninitialized:true
 }));
-app.use('/', express.static('./'));
+app.use('/', express.static('./public'));
 app.use('/users', require('./routes/users.js'));
 
 app.listen(portNo, () => {
