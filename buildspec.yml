@@ -19,6 +19,13 @@ phases:
     commands:
       - echo `ls -alt ./public/`
 artifacts:
-  files : public/bundle.js
-  discard-paths: yes
+  secondary-artifacts:
+    artifact1:
+      files:
+        - public/bundle.js
+      discard-paths: yes
+    artifact2:
+      files:
+        - public/index.html
+      discard-paths: yes
 
