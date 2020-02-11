@@ -18,7 +18,8 @@ phases:
   post_build:
     commands:
       - echo `ls -alt ./public/`
-      - aws s3 sync ./public s3://jjouhiu-application
+      - aws s3 cp ./public/index.html s3://jjouhiu-application
+      - aws s3 cp ./public/bundle.js s3://jjouhiu-application
 artifacts:
   files:
         - public/bundle.js
