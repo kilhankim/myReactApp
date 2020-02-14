@@ -10,6 +10,7 @@ ls -alt /deployApp/public/
 
 cd /deployApp
 echo "module install"
+export PATH=$PATH:/root/.nvm/versions/node/v13.8.0/bin
 echo $PATH
 /root/.nvm/versions/node/v13.8.0/bin/npm install
 echo "-----------------------------------"
