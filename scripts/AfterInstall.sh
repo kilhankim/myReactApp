@@ -10,5 +10,5 @@ ls -alt /deployApp/myReactApp/public/
 
 cd /deployApp
 echo "module install"
-npm install
+/root/.nvm/versions/node/v13.8.0/bin/npm install
 echo "-----------------------------------"
