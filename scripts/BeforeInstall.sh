@@ -16,6 +16,4 @@ echo "---------------------------------------"
 cd /deployApp
 export PATH=$PATH:/root/.nvm/versions/node/v13.8.0/bin
 npm install
-npm install pm2 -g
-pm2 start app.js --name myReactApp
 echo "---------------------------------------"
