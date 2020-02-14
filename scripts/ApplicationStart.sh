@@ -2,6 +2,6 @@
 echo "-----------------------------------"
 echo "ApplicationStart"
 cd /deployApp
-
-pm2 start app.js --name myReactApp
+sudo su
+pm2 start /deployApp/app.js --name myReactApp
 echo "-----------------------------------"
