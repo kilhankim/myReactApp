@@ -25,6 +25,8 @@ export class Login extends React.Component{
       console.log('Login.js res : ' + JSON.stringify(res.body.result));
      
 
+      localStorage.setItem('login',res.body.result)
+      localStorage.setItem('token',res.body.token)
 
       if(res.body.result)
       {

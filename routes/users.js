@@ -48,9 +48,9 @@ router.get('/login', (req, res) => {
 
  });
 
-router.get('/list', (req, res) => {
+router.get('/listUser', (req, res) => {
 
-  console.log('/user/list is called: ' +  req );
+    console.log('/user/list is called: ' +  req );
     console.log('==========================')
     console.log(JSON.stringify(req.session));
     console.log('==========================')
@@ -61,7 +61,11 @@ router.get('/list', (req, res) => {
 
         console.log(results)
 
+
+       // res.render('index', { title: 'Express' });
         res.json(results)
+
+
 
     });
 

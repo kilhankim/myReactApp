@@ -38863,6 +38863,8 @@ class Login extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       console.log("Login.js result -----------------");
       console.log('Login.js res : ' + JSON.stringify(res.body));
       console.log('Login.js res : ' + JSON.stringify(res.body.result));
+      localStorage.setItem('login', res.body.result);
+      localStorage.setItem('token', res.body.token);
 
       if (res.body.result) {
         console.log('res : ' + JSON.stringify(res.body.result));
@@ -38960,7 +38962,7 @@ class UserList extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
 
   componentWillMount() {
     console.log('componentWillMount is called ');
-    this.api('list');
+    this.api('listUser');
   }
 
   api(command) {
@@ -38988,11 +38990,43 @@ class UserList extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   render() {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       class: "container contact contact-index"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+      class: "navbar navbar-expand-sm navbar-light bg-light mb-3"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      class: "container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      class: "navbar-brand"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "/",
+      class: "nav-link"
+    }, " MyApp "), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      class: "collapse navbar-collapse",
+      id: "navbarSupportedContent"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      class: "navbar-nav"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      class: "nav-item"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "/list",
+      class: "nav-link"
+    }, "MySQL list")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      class: "nav-item"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "/slowLambda",
+      class: "nav-link"
+    }, "slowLambda")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      class: "nav-item"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "/s3list",
+      class: "nav-link"
+    }, "S3 bucket")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "/users/logout",
+      class: "btn "
+    }, "Logout"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       class: "btn btn-success",
       "data-toggle": "modal",
       "data-target": "#myModalAdd",
-      onClick: e => this.api('list')
+      onClick: e => this.api('listUser')
     }, " LIST "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
       class: "table table-striped",
       id: "mytable"
@@ -39029,7 +39063,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const MyApplication = () => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ApplicationHeader__WEBPACK_IMPORTED_MODULE_5__["ApplicationHeader"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+const MyApplication = () => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
   path: "/user/list",
   component: _UserList__WEBPACK_IMPORTED_MODULE_4__["UserList"]
 }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
@@ -39041,6 +39075,7 @@ const MyApplication = () => react__WEBPACK_IMPORTED_MODULE_0___default.a.createE
 
 const ApplicationFooter = () => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "I am Header");
 
+console.log('index render function : ' + localStorage.getItem('token'));
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MyApplication, null), document.getElementById('root'));
 
 /***/ })

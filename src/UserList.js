@@ -10,7 +10,7 @@ export class UserList extends React.Component{
   componentWillMount()
   {
     console.log('componentWillMount is called ' );
-    this.api('list');
+    this.api('listUser');
 
   }
 
@@ -46,7 +46,20 @@ export class UserList extends React.Component{
 
     return (
    <div class="container contact contact-index">
-    <button class="btn btn-success" data-toggle="modal" data-target="#myModalAdd" onClick={e => this.api('list')}> LIST </button>
+        <nav class="navbar navbar-expand-sm navbar-light bg-light mb-3">
+          <div class="container">
+            <div class="navbar-brand"><a href="/" class="nav-link"> MyApp </a> </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav">
+                <li class="nav-item"><a href="/list" class="nav-link">MySQL list</a></li>
+                <li class="nav-item"><a href="/slowLambda" class="nav-link">slowLambda</a></li>
+                <li class="nav-item"><a href="/s3list" class="nav-link">S3 bucket</a></li>
+              </ul>
+            </div>
+            <a href="/users/logout" class="btn ">Logout</a>
+          </div>
+        </nav>
+    <button class="btn btn-success" data-toggle="modal" data-target="#myModalAdd" onClick={e => this.api('listUser')}> LIST </button>
     <br />
     <table class="table table-striped" id="mytable">
         <thead>

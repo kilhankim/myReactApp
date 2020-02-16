@@ -12,6 +12,7 @@ import {ApplicationHeader} from './ApplicationHeader'
 const MyApplication = () => (
   <Router>
   <div>
+    <ApplicationHeader />
     <div>
       <Switch>
         <Route path='/user/list' component={UserList} />
@@ -31,7 +32,6 @@ const ApplicationFooter = () => (
   </div>
 )
 
-  console.log('index render function : ' + localStorage.getItem('token'))
 ReactDOM.render(
   <MyApplication/>,
   document.getElementById('root'))
