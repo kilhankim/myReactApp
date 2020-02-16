@@ -7,10 +7,17 @@ export class UserList extends React.Component{
     this.state = { member : []}
   }
 
+  componentWillMount()
+  {
+    console.log('componentWillMount is called ' );
+    this.api('list');
+
+  }
+
 
   api(command) {
     console.log(command)
-    request.get('/users/'+command)
+    request.get('/user/'+command)
     .query({
       email : this.state.email,
       password : this.state.password

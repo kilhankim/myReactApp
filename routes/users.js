@@ -29,16 +29,13 @@ const conn = mysql.createConnection({
 
 // Login Page
 router.get('/login', (req, res) => {
-  console.log('req.query : ' +  req.query );
-  console.log('req.query : ' +  JSON.stringify(req.query) );
-  console.log('req.query : ' +  JSON.stringify(req.query.email) );
-  console.log('req.query : ' +  JSON.stringify(req.query.password) );
-
+  console.log('req.query1 : ' +  req.query );
+  console.log('req.query2 : ' +  JSON.stringify(req.query) );
+  console.log('req.query3 : ' +  JSON.stringify(req.query.email) );
+  console.log('req.query4 : ' +  JSON.stringify(req.query.password) );
 
   const email = req.query.email
   const password = req.query.password
-
-
 
  var authCheckResult = authCheck.login(email, password, function(result){
 
@@ -49,14 +46,11 @@ router.get('/login', (req, res) => {
 
   });
 
-
  });
 
-
-// Register Page
 router.get('/list', (req, res) => {
 
-
+  console.log('/user/list is called: ' +  req );
     console.log('==========================')
     console.log(JSON.stringify(req.session));
     console.log('==========================')
@@ -71,7 +65,11 @@ router.get('/list', (req, res) => {
 
     });
 
-});
+ });
+
+
+
+
 
 // Register
 router.post('/register', (req, res) => {

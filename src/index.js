@@ -15,7 +15,7 @@ const MyApplication = () => (
     <ApplicationHeader />
     <div>
       <Switch>
-        <Route path='/userList' component={UserList} />
+        <Route path='/user/list' component={UserList} />
         <Route path='/' component={Login} />
         <Route component={Login} />
       </Switch>

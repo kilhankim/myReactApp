@@ -10,7 +10,7 @@ export class Login extends React.Component{
 
   api(command) {
     console.log(command)
-    request.get('/users/'+command)
+    request.get('/user/'+command)
     .query({ 
       email : this.state.email,
       password : this.state.password
@@ -29,7 +29,7 @@ export class Login extends React.Component{
       if(res.body.result)
       {
         console.log('res : ' + JSON.stringify(res.body.result));
-        this.setState({jump : '/userList'})
+        this.setState({jump : '/user/list'})
       }
     })
   }
