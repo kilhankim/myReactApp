@@ -17,14 +17,14 @@ export class Login extends React.Component{
     })
     .end((err, res) => {
       if(err) return
-      /*
+      
       console.log("Login.js result -----------------");
-      console.log('res : ' + res);
+      console.log('Login.js res : ' + res);
       console.log("Login.js result -----------------");
-      console.log('res : ' + JSON.stringify(res.body));
-      console.log('res : ' + JSON.stringify(res.body.result));
+      console.log('Login.js res : ' + JSON.stringify(res.body));
+      console.log('Login.js res : ' + JSON.stringify(res.body.result));
      
-*/
+
 
       if(res.body.result)
       {
@@ -37,6 +37,7 @@ export class Login extends React.Component{
   render () {
     if(this.state.jump){
       console.log(this.state)
+
       return <Redirect to={this.state.jump} />
     }
 
