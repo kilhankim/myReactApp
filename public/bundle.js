@@ -38950,6 +38950,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var superagent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! superagent */ "./node_modules/superagent/lib/client.js");
 /* harmony import */ var superagent__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(superagent__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ApplicationHeader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ApplicationHeader */ "./src/ApplicationHeader.js");
+
 
 
 class UserList extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
@@ -38990,39 +38992,7 @@ class UserList extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   render() {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       class: "container contact contact-index"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
-      class: "navbar navbar-expand-sm navbar-light bg-light mb-3"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      class: "container"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      class: "navbar-brand"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "/",
-      class: "nav-link"
-    }, " MyApp "), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      class: "collapse navbar-collapse",
-      id: "navbarSupportedContent"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-      class: "navbar-nav"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      class: "nav-item"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "/list",
-      class: "nav-link"
-    }, "MySQL list")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      class: "nav-item"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "/slowLambda",
-      class: "nav-link"
-    }, "slowLambda")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      class: "nav-item"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "/s3list",
-      class: "nav-link"
-    }, "S3 bucket")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "/users/logout",
-      class: "btn "
-    }, "Logout"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ApplicationHeader__WEBPACK_IMPORTED_MODULE_2__["ApplicationHeader"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       class: "btn btn-success",
       "data-toggle": "modal",
       "data-target": "#myModalAdd",
