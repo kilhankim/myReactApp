@@ -2,6 +2,53 @@ import React from 'react'
 import request from 'superagent'
 import {Redirect} from 'react-router-dom'
 
+
+
+
+import {ApplicationHeader} from './ApplicationHeader'
+import { createStore } from 'redux'
+
+
+// 액션 타입을 정의해줍니다.
+const STORE_SESSION  = 'STORE_SESSION'
+
+// 액션 객체를 만들어주는 액션 생성 함수
+const loginAction= (emailId, jwtToken) => ({ type: STORE_SESSION, email : emailId , jwtToken : jwtToken});
+
+const initialState = {
+ loginState : false ,
+ emailId : '',
+ token : ''
+};
+
+/*
+   이것은 리듀서 함수입니다.
+   state 와 action 을 파라미터로 받아옵니다.
+   그리고 그에 따라 다음 상태를 정의 한 다음에 반환해줍니다.
+*/
+
+// 여기에 state = initialState 는, 파라미터의 기본값을 지정해줍니다.
+const sessionSave  = (state=initialState , action) => {
+  console.log(action);
+  console.log(action.type);
+
+  switch(action.type) {
+    case STORE_SESSION:
+      return {
+        loginState : true,
+        emailId : action.email, 
+        token : action.jwtToken
+      };
+    default:
+      return state;
+  }
+  console.log(this.props.store.getState())
+}
+
+// 스토어를 만들 땐 createStore 에 리듀서 함수를 넣어서 호출합니다.
+const store = createStore(sessionSave);
+
+
 export class Login extends React.Component{
   constructor (props) {
     super(props)
@@ -18,12 +65,6 @@ export class Login extends React.Component{
     .end((err, res) => {
       if(err) return
       
-      console.log("Login.js result -----------------");
-      console.log('Login.js res : ' + res);
-      console.log("Login.js result -----------------");
-      console.log('Login.js res : ' + JSON.stringify(res.body));
-      console.log('Login.js res : ' + JSON.stringify(res.body.result));
-     
 
       localStorage.setItem('login',res.body.result)
       localStorage.setItem('token',res.body.token)
@@ -32,6 +73,7 @@ export class Login extends React.Component{
       {
         console.log('res : ' + JSON.stringify(res.body.result));
         this.setState({jump : '/user/list'})
+        store.dispatch(loginAction(this.state.email, res.body.token));
       }
     })
   }

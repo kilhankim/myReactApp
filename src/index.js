@@ -6,7 +6,12 @@ import {
 } from 'react-router-dom'
 import {Login} from './Login'
 import {UserList} from './UserList'
+import {LambdaS3List} from './LambdaS3List'
 import {ApplicationHeader} from './ApplicationHeader'
+
+
+
+
 
 
 const MyApplication = () => (
@@ -16,6 +21,7 @@ const MyApplication = () => (
       <Switch>
         <Route path='/user/list' component={UserList} />
         <Route path='/' component={Login} />
+        <Route path='/lambda/s3' component={LambdaS3List} />
         <Route component={Login} />
       </Switch>
     </div>
@@ -24,14 +30,6 @@ const MyApplication = () => (
 )
 
 
-
-const ApplicationFooter = () => ( 
-  <div>
-    I am Header
-  </div>
-)
-
-  console.log('index render function : ' + localStorage.getItem('token'))
 ReactDOM.render(
   <MyApplication/>,
   document.getElementById('root'))

@@ -19,8 +19,8 @@ export class ApplicationHeader extends React.Component{
 	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	      <ul class="navbar-nav">
 		<li class="nav-item"><a href="/list" class="nav-link">MySQL list</a></li>
-		<li class="nav-item"><a href="/slowLambda" class="nav-link">slowLambda</a></li>
-		<li class="nav-item"><a href="/s3list" class="nav-link">S3 bucket</a></li>
+		<li class="nav-item"><a href="/lambda/s3" class="nav-link">slowLambda</a></li>
+		<li class="nav-item"><a href="/s3" class="nav-link">S3 bucket</a></li>
 	      </ul>
 	    </div>
 	    <a href="/users/logout" class="btn ">Logout</a>

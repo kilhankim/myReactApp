@@ -2,8 +2,15 @@ import React from 'react'
 import request from 'superagent'
 import {ApplicationHeader} from './ApplicationHeader'
 
-export class UserList extends React.Component{
+export class LambdaS3List extends React.Component{
   constructor (props) {
+    console.log('LambdaS3List is called')
+    console.log('LambdaS3List is called')
+    console.log('LambdaS3List is called')
+    console.log('LambdaS3List is called')
+    console.log('LambdaS3List is called')
+    console.log('LambdaS3List is called')
+    console.log('LambdaS3List is called')
     super(props)
     this.state = { member : [], jump : ''}
   }

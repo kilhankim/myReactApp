@@ -37,6 +37,7 @@ app.use(expressSession({
 
 app.use('/', express.static('./public'));
 app.use('/user', require('./routes/users.js'));
+app.use('/lambda', require('./routes/lambda.js'));
 
 app.listen(portNo, () => {
       console.log('서버 실행 완료:   ', `http://localhost:${portNo}`)
