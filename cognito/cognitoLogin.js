@@ -44,6 +44,18 @@ var authCheck = {
 
                 returnData = { 'result' : 'success' , 'token' : result.getIdToken().getJwtToken()}; 
 
+                console.log('access token : '  + result.getAccessToken().getJwtToken())
+/*
+var params = {
+  AccessToken: result.getAccessToken().getJwtToken()
+};
+cognitoidentityserviceprovider.getUser(params, function(err, data) {
+  if (err) console.log(err, err.stack); // an error occurred
+  else     console.log('!!!!!!!!!!!!!!' + data);           // successful response
+});
+*/
+
+
                 callback(returnData);
 
 	    }, //onSuccess
